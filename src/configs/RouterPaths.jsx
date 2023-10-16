@@ -6,7 +6,7 @@ import Login from "../pages/login/container/Login";
 export const RouterPaths = [
     {
         path: "/",
-        element: <Home />,
+        element: <App />,
     },
     {
         path: "/login",

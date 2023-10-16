@@ -1,15 +1,19 @@
-import { getImage } from "../../utils";
-import App from "../pages/app/App";
-import Home from "../pages/home/container/Home";
-import Login from "../pages/login/container/Login";
+import { getImage } from '../../utils';
+import App from '../pages/app/App';
+import Home from '../pages/home/container/Home';
+import Login from '../pages/login/container/Login';
 
 export const RouterPaths = [
-    {
-        path: "/",
-        element: <App />,
-    },
-    {
-        path: "/login",
-        element:<Login/>,
-    },
+  {
+    path: '/',
+    element: <App />,
+  },
+  {
+    path: '/home',
+    element: <Home></Home>,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
 ];

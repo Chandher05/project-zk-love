@@ -3,7 +3,7 @@ import { getImage } from '../../../../utils';
 
 export default function Login() {
   return (
-    <section className='h-screen bg-primary-100'>
+    <section className='h-screen login-bg'>
       <div className='container mx-auto flex justify-center items-center w-full h-full'>
         <div>
           <img

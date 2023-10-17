@@ -1,4 +1,4 @@
-export const getImage = (image: string) => {
+export const getImage = (image) => {
   if (!image) {
     return;
   }

@@ -7,7 +7,7 @@ export default function Verified(props) {
   const { name, age, sex } = props;
   return (
     <section className='h-screen bg-slate-100'>
-      <div className='container mx-auto flex justify-center items-center w-full h-full max-w-sm text-center'>
+      <div className='container mx-auto flex justify-center items-center w-full  max-w-sm h-[600px] text-center'>
         <div className=''>
           <img
             src={getImage('verified_green.svg')}

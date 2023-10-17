@@ -32,7 +32,7 @@ export default function Verify() {
   });
   return (
     <section className='h-screen bg-slate-100'>
-      <div className='container mx-auto flex justify-center items-center w-full h-full max-w-sm'>
+      <div className='container mx-auto flex justify-center items-center w-full h-[600px] max-w-sm'>
         <div className=''>
           <h3 className='text-2xl mb-2'>Are You Human?</h3>
           <p className='text-base text-lightGray leading-6'>

@@ -1,5 +1,15 @@
 import React from 'react';
 import { getImage } from '../../../../utils';
+import { Button } from '../../../../components/ui/button';
+import { useState, useEffect } from 'react';
+import {
+  oauthClientId,
+  polygonTestnet,
+  productName,
+  web3AuthClientId,
+  web3AuthLoginType,
+  web3AuthVerifier,
+} from '../../../../constants';
 
 export default function Login() {
   return (
@@ -11,6 +21,14 @@ export default function Login() {
             alt='safe-date-logo'
             className='w-32 mb-24'
           ></img>
+          <Button
+            variant={'secondary'}
+            // onClick={() => {
+            //   signIn();
+            // }}
+          >
+            Continue with Google
+          </Button>
           <h3 className='text-white/50 text-center'>Login</h3>
         </div>
       </div>

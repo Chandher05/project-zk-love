@@ -1,0 +1,1 @@
+export const profileIntrests = ["Sports", "Music", "Travel", "Reading", "Art", "Gaming", "Photography", "Dancing", "Coding", "Hiking", "Pet lover", "Gadgets freak", "Camping", "Fashion Insta", "Fitness Guru", "Meeting new people", "Dancing", "Foodie", "caffine addict"]

@@ -1,5 +1,7 @@
 import { getImage } from '../../utils';
 import App from '../pages/app/App';
+import ChatOverview from '../pages/chat/ChatOverview';
+import { ChatThread } from '../pages/chat/ChatThread';
 import UploadPhoto from '../pages/create-profile/UploadPhoto';
 import PickPassion from '../pages/create-profile/pickPassion';
 import ProfileSwipe from '../pages/discover/ProfileSwipe';
@@ -28,5 +30,13 @@ export const RouterPaths = [
   {
     path: '/passions',
     element: <ProfileSwipe />,
+  },
+  {
+    path: '/chat',
+    element: <ChatOverview />,
+  },
+  {
+    path: '/chat/:id',
+    element: <ChatThread />,
   },
 ];

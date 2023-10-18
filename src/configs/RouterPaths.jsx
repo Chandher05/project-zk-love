@@ -11,10 +11,6 @@ import Verify from '../pages/verify/container/Verify';
 export const RouterPaths = [
   {
     path: '/',
-    element: <App />,
-  },
-  {
-    path: '/home',
     element: <Home></Home>,
   },
   {

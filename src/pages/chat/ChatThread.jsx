@@ -33,6 +33,16 @@ export const ChatThread = (props) => {
     <section className='h-screen bg-slate-100 flex items-center justify-center'>
       <div className='relative container mx-auto w-full h-[80%] max-w-sm'>
         <ChatHeader image={thread.image} name={thread.name} />
+        <div className='flex flex-col'>
+          <div className='chat chat-start'>
+            <div className='chat-bubble bg-slate-300 text-black'>
+              It's over Anakin, <br />I have the high ground.
+            </div>
+          </div>
+          <div className='chat chat-end'>
+            <div className='chat-bubble bg-primary-100'>You underestimate my power!</div>
+          </div>
+        </div>
         <div className='container absolute bottom-0 left-0 w-full'>
           <ChatInput />
         </div>

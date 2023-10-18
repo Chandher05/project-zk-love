@@ -15,10 +15,12 @@ import {
 } from '../../../../constants';
 import { CHAIN_NAMESPACES, WALLET_ADAPTERS } from '@web3auth/base';
 import { ethers } from 'ethers';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [web3auth, setWeb3auth] = useState(null);
   const [provider, setProvider] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function initializeOpenLogin() {
@@ -80,6 +82,8 @@ export default function Login() {
     console.log(add, 'address');
     console.log('web3authProvider', web3authProvider);
     setProvider(web3authProvider);
+
+    navigate('verify');
   };
   return (
     <section className='h-screen flex items-center'>
@@ -90,15 +94,16 @@ export default function Login() {
             alt='safe-date-logo'
             className='w-32 mb-24'
           ></img>
+          <h3 className='text-white/50 text-center m-2'>Login</h3>
           <Button
             variant={'secondary'}
             onClick={() => {
               signIn();
             }}
+            className='bg-transparent/20 text-white border-1 border-[#E89402] hover:bg-transparent/50'
           >
             Continue with Google
           </Button>
-          <h3 className='text-white/50 text-center'>Login</h3>
         </div>
       </div>
     </section>

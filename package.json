@@ -12,9 +12,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@web3auth/base": "^6.1.7",
+    "@web3auth/ethereum-provider": "^6.1.5",
+    "@web3auth/no-modal": "^6.1.7",
+    "@web3auth/openlogin-adapter": "^6.1.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.287.0",
@@ -23,7 +28,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "ethers": "5.7.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

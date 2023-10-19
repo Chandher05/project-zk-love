@@ -24,7 +24,6 @@ export default function Login() {
 
   useEffect(() => {
     async function initializeOpenLogin() {
-      console.log('came');
       const chainConfig = {
         chainNamespace: CHAIN_NAMESPACES.EIP155,
         chainId: polygonTestnet.chainIdHex,
@@ -72,18 +71,22 @@ export default function Login() {
     initializeOpenLogin();
   }, []);
   const signIn = async () => {
-    const web3authProvider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
-      loginProvider: 'google',
-    });
+    try {
+      const web3authProvider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
+        loginProvider: 'google',
+      });
 
-    const ethProvider = new ethers.providers.Web3Provider(web3authProvider);
-    const signer = await ethProvider.getSigner();
-    const add = await signer.getAddress();
-    console.log(add, 'address');
-    console.log('web3authProvider', web3authProvider);
-    setProvider(web3authProvider);
-
-    navigate('verify');
+      const ethProvider = new ethers.providers.Web3Provider(web3authProvider);
+      const signer = await ethProvider.getSigner();
+      const add = await signer.getAddress();
+      console.log(add, 'address');
+      console.log('web3authProvider', web3authProvider);
+      setProvider(web3authProvider);
+      navigate('/verify');
+    } catch (e) {
+      console.log(e);
+      alert('Something went wrong' + JSON.stringify(e));
+    }
   };
   return (
     <section className='h-screen flex items-center'>

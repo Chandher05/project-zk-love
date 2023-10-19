@@ -3,6 +3,7 @@ import App from '../pages/app/App';
 import ChatOverview from '../pages/chat/ChatOverview';
 import { ChatThread } from '../pages/chat/ChatThread';
 import Profile from '../pages/create-profile/Profile';
+
 import UploadPhoto from '../pages/create-profile/UploadPhoto';
 import PickPassion from '../pages/create-profile/pickPassion';
 import ProfileSwipe from '../pages/discover/ProfileSwipe';

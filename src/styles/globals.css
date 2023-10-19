@@ -81,3 +81,6 @@
   .login-bg{
     background: radial-gradient(134.01% 117.97% at 84.93% 88.85%, #FA8B14 0%, #C02502 100%);
   }
+.profile-bg{
+  background: radial-gradient(65.84% 78.94% at 74.13% 42.06%, #F29305 35.08%, #C02502 100%);
+}

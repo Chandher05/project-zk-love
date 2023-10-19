@@ -6,6 +6,7 @@ import { Input } from '../../../components/ui/input';
 import { Label } from '../../../components/ui/label';
 import { profileIntrests } from '../../../constants';
 import { getImage } from '../../../utils';
+import { Footer } from '../chat/ChatOverview';
 
 const dummyProfile = {
   profile_img: 'profile_image_1.png',
@@ -21,8 +22,8 @@ export default function ProfileSwipe(props) {
   const [showProfile, setShowProfile] = useState(true);
   console.log(showProfile, 'show profile');
   return (
-    <section className='h-screen bg-slate-100'>
-      <div className='container mx-auto w-full h-full py-24 max-w-sm'>
+    <section className='h-screen bg-slate-100 flex items-center justify-center'>
+      <div className='container mx-auto w-full h-[80%] max-w-sm'>
         {showProfile ? (
           <>
             <Header />
@@ -31,6 +32,7 @@ export default function ProfileSwipe(props) {
         ) : (
           <ProfileCard setShowProfile={setShowProfile} profile={dummyProfile} />
         )}
+        <Footer />
       </div>
     </section>
   );
@@ -38,7 +40,7 @@ export default function ProfileSwipe(props) {
 
 export const Header = () => {
   return (
-    <div className='w-full flex items-center justify-between mb-10'>
+    <div className='w-full flex items-center justify-between mb-5'>
       <a href='/home'>
         <img src={getImage('chevron_left.svg')} alt='go back' />
       </a>
@@ -73,7 +75,7 @@ export const SwipeProfileCard = (props) => {
           Verified
         </div>
       </div>
-      <div className='flex items-center justify-between p-2 mt-2'>
+      <div className='flex items-center justify-between p-2 my-3'>
         <button className='rounded-full bg-white flex justify-between items-center p-4'>
           <img src={getImage('cross_red.svg')} alt='cross' className='w-14 h-14' />
         </button>

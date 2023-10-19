@@ -2,6 +2,7 @@ import { getImage } from '../../utils';
 import App from '../pages/app/App';
 import ChatOverview from '../pages/chat/ChatOverview';
 import { ChatThread } from '../pages/chat/ChatThread';
+import Profile from '../pages/create-profile/Profile';
 import UploadPhoto from '../pages/create-profile/UploadPhoto';
 import PickPassion from '../pages/create-profile/pickPassion';
 import ProfileSwipe from '../pages/discover/ProfileSwipe';
@@ -24,8 +25,12 @@ export const RouterPaths = [
     element: <Login />,
   },
   {
-    path: '/verify',
+    path: '/verified',
     element: <Verified />,
+  },
+  {
+    path: '/verify',
+    element: <Verify />,
   },
   {
     path: '/passions',
@@ -38,5 +43,9 @@ export const RouterPaths = [
   {
     path: '/chat/:id',
     element: <ChatThread />,
+  },
+  {
+    path: '/profile',
+    element: <Profile />,
   },
 ];

@@ -85,15 +85,18 @@ export const ChatThreads = (props) => {
   );
 };
 
-
-
-
 export const Footer = () => {
   return (
     <div className='flex justify-between p-2 bg-white'>
-      <img src={getImage('footer_account_icon.svg')} alt='' />
-      <img src={getImage('footer_search_icon.svg')} alt='' />
-      <img src={getImage('footer_chat_icon.svg')} alt='' />
+      <a href='/profile'>
+        <img src={getImage('footer_account_icon.svg')} alt='' />
+      </a>
+      <a>
+        <img src={getImage('footer_search_icon.svg')} alt='' />
+      </a>
+      <a href='/chat'>
+        <img src={getImage('footer_chat_icon.svg')} alt='' />
+      </a>
     </div>
   );
 };

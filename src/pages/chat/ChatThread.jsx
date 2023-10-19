@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { getImage } from '../../../utils';
+import { useState } from 'react';
 const dummyMsgData = [
   {
     id: 1,
@@ -34,6 +35,7 @@ const dummyMsgs = [
 ];
 
 export const ChatThread = (props) => {
+  const [array, setArray] = useState(dummyMsgs);
   const { id } = useParams();
   const thread = dummyMsgData.filter((msg) => msg.id == id)[0];
   console.log(id, 'id from thread');
@@ -42,23 +44,19 @@ export const ChatThread = (props) => {
     <section className='h-screen bg-slate-100 flex items-center justify-center'>
       <div className='relative container mx-auto w-full h-[80%] max-w-sm'>
         <ChatHeader image={thread.image} name={thread.name} />
-        <div className='flex flex-col'>
-          <div className='chat chat-start'>
-            <div className='chat-bubble bg-slate-300 text-black'>
-              It's over Anakin, <br />I have the high ground.
-            </div>
-          </div>
-          <div className='chat chat-end'>
-            <div className='chat-bubble bg-primary-100'>You underestimate my power!</div>
-          </div>
+        <div className='flex flex-col-reverse'>
+          {array.map((_msg) => {
+            return <Message message={_msg.msg} id={_msg.id} />;
+          })}
         </div>
         <div className='container absolute bottom-0 left-0 w-full'>
-          <ChatInput />
+          <ChatInput setArray={setArray} array={array} />
         </div>
       </div>
     </section>
   );
 };
+console.log(dummyMsgs);
 //
 //
 //CHAT HEADER
@@ -85,15 +83,44 @@ export const ChatHeader = (props) => {
 //
 //
 //CHAT INPUT
-export const ChatInput = () => {
+export const ChatInput = (props) => {
+  const { setArray, array } = props;
+  const [input, setInput] = useState('');
+  const addToArray = () => {
+    setArray([...array, { id: '12', msg: input }]);
+    setInput('');
+  };
+  console.log(array, 'array');
   return (
     <div className='w-full bg-white h-14 flex justify-between items-center'>
       <input
         type='text'
         placeholder='start typing'
         className='placeholder:pl-4 bg-white w-full h-full px-2'
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
       />
-      <img src={getImage('chevron_left.svg')} alt='back' className='rotate-180' />
+      <img
+        src={getImage('chevron_left.svg')}
+        alt='back'
+        className='rotate-180'
+        onClick={addToArray}
+      />
+    </div>
+  );
+};
+
+export const Message = (props) => {
+  const { message, id } = props;
+  return (
+    <div className={`chat ${id == '12' ? 'chat-start' : 'chat-end'}`}>
+      <div
+        className={`chat-bubble ${
+          id == '12' ? 'bg-slate-300 text-black' : 'bg-primary-100 text-white'
+        } `}
+      >
+        {message}
+      </div>
     </div>
   );
 };

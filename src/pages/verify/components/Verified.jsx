@@ -4,25 +4,37 @@ import { Button } from '../../../../components/ui/button';
 import { getImage } from '../../../../utils';
 
 export default function Verified(props) {
-  const { name, age, sex } = props;
   return (
     <section className='h-screen bg-slate-100'>
-      <div className='container mx-auto flex justify-center items-center w-full  max-w-sm h-[600px] text-center'>
+      <div className='relative container mx-auto flex justify-center items-center w-full  max-w-sm h-[80%] text-center'>
         <div className=''>
           <img
-            src={getImage('verified_green.svg')}
+            src={getImage('verified_nft.svg')}
             alt='verified'
-            className='rounded-full justify-center w-2/3 mx-auto'
+            className='rounded-full justify-center w-1/2 mx-auto'
           />
           <h3 className='text-black text-2xl font-bold'>Congratulations</h3>
-          <p className='text-base text-black'>You're verified!</p>
-          <p>{name ?? 'John Wick'}</p>
-          <div className='flex items-center justify-center gap-x-5'>
-            <p>{`Age ${age ?? '30'}`}</p>
-            <div className='w-[1px] h-[14px] bg-black'></div>
-            <p>{sex ?? 'male'}</p>
+          <p className='text-base text-black mb-6'>You're verified!</p>
+          <div className='px-2 flex flex-col gap-y-4'>
+            <input
+              type='text'
+              placeholder='Name'
+              className='input w-full rounded-r-full rounded-l-full h-10 border-slate-200'
+            />
+            <div className='flex gap-4 justify-between'>
+              <input
+                type='text'
+                placeholder='Age'
+                className='input w-[45%] rounded-r-full rounded-l-full h-10 border-slate-200'
+              />{' '}
+              <input
+                type='text'
+                placeholder='Gender'
+                className='input w-[45%] rounded-r-full rounded-l-full h-10 border-slate-200'
+              />
+            </div>
           </div>
-          <div className='self-center mx-auto w-36'>
+          <div className='absolute bottom-2 left-1/2 -translate-x-1/2'>
             <Button variant={'default'}>Continue</Button>
           </div>
         </div>

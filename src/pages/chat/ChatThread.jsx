@@ -24,6 +24,15 @@ const dummyMsgData = [
   },
 ];
 
+const dummyMsgs = [
+  { add: '1234', msg: 'Hey' },
+  { add: '12', msg: 'Hey' },
+  { add: '1234', msg: 'Hey' },
+  { add: '12', msg: 'Hey' },
+  { add: '1234', msg: 'Hey' },
+  { add: '12', msg: 'Hey' },
+];
+
 export const ChatThread = (props) => {
   const { id } = useParams();
   const thread = dummyMsgData.filter((msg) => msg.id == id)[0];
@@ -79,7 +88,11 @@ export const ChatHeader = (props) => {
 export const ChatInput = () => {
   return (
     <div className='w-full bg-white h-14 flex justify-between items-center'>
-      <input type='text' placeholder='start typing' className='placeholder:pl-4' />
+      <input
+        type='text'
+        placeholder='start typing'
+        className='placeholder:pl-4 bg-white w-full h-full px-2'
+      />
       <img src={getImage('chevron_left.svg')} alt='back' className='rotate-180' />
     </div>
   );

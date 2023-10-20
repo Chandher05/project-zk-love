@@ -9,6 +9,7 @@ import PickPassion from '../pages/create-profile/pickPassion';
 import ProfileSwipe from '../pages/discover/ProfileSwipe';
 import Home from '../pages/home/container/Home';
 import Login from '../pages/login/container/Login';
+import NotVerified from '../pages/verify/container/NotVerified';
 import Verified from '../pages/verify/container/Verify';
 import Verify from '../pages/verify/container/Verify';
 
@@ -25,6 +26,10 @@ export const RouterPaths = [
     path: '/login',
     element: <Login />,
   },
+  // {
+  //   path: '/verified',
+  //   element: <Verified />,
+  // },
   {
     path: '/verified',
     element: (

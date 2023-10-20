@@ -89,9 +89,9 @@ export default function Login() {
     }
   };
   return (
-    <section className='h-screen flex items-center'>
-      <div className='container mx-auto w-full h-[80%] py-24 max-w-sm login-bg'>
-        <div className='flex flex-col items-center'>
+    <section className='h-screen flex items-center justify-center'>
+      <div className='container mx-auto w-full h-[80%] max-w-sm login-bg flex items-center justify-center'>
+        <div className='flex flex-col items-center w-full'>
           <img
             src={getImage('logo_with_text.png')}
             alt='safe-date-logo'

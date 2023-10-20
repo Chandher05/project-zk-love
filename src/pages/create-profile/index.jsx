@@ -3,6 +3,7 @@ import Verified from './Verified';
 import PickPassion from './pickPassion';
 import { Upload } from 'lucide-react';
 import UploadPhoto from './UploadPhoto';
+import { TablelandInit, writeintoTable } from '../../configs/tableland-config';
 
 function CreateProfile() {
   const [step, setStep] = useState(1);
@@ -17,15 +18,17 @@ function CreateProfile() {
   };
 
   const submitProfile = () => {
-    console.log(profile);
+    console.log({ profile });
+    TablelandInit();
+    writeintoTable({ ...profile });
   };
   if (step == 1) {
     return <Verified setProfile={addToProfile}></Verified>;
   } else if (step == 2) {
     return <PickPassion setProfile={addToProfile}></PickPassion>;
   } else if (step == 3) {
-    return <UploadPhoto></UploadPhoto>;
+    return <UploadPhoto addToProfile={addToProfile}></UploadPhoto>;
   }
-  return <>Step not valid</>;
+  return <>Profile Created</>;
 }
 export default CreateProfile;

@@ -5,7 +5,7 @@ import { Input } from '../../../components/ui/input';
 import { Label } from '../../../components/ui/label';
 import { profileIntrests } from '../../../constants';
 
-export default function UploadPhoto() {
+export default function UploadPhoto({ addToProfile }) {
   const [file, setFile] = useState();
   const handleChange = (e) => {
     console.log(e.target.files);
@@ -27,16 +27,27 @@ export default function UploadPhoto() {
                 placeholder='upload a picture'
                 onChange={handleChange}
                 id='upload-picture'
-                className='file-input h-10'
+                className='file-input h-10 bg-white text-black'
               />
             </div>
           </div>
           <img src={file} className='w-[90%]' />
-          <div className='absolute bottom-8 flex flex-col gap-y-2 w-full' onClick={() => {}}>
-            <Button onClick={() => {}} className='my-0 mx-auto'>
+          <div className='absolute bottom-8 flex flex-col gap-y-2 w-full'>
+            <Button
+              onClick={() => {
+                addToProfile({});
+              }}
+              className='my-0 mx-auto'
+            >
               Start matching
             </Button>
-            <Button variant='ghost' className={'w-full my-0 text-primary-700'} onClick={() => {}}>
+            <Button
+              variant='ghost'
+              className={'w-full my-0 text-primary-700'}
+              onClick={() => {
+                addToProfile({});
+              }}
+            >
               Skip
             </Button>{' '}
           </div>

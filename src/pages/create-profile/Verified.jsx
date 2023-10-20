@@ -38,7 +38,7 @@ export default function Verified({ setProfile }) {
               onChange={(e) => setName(e.target.value)}
               type='text'
               placeholder='Name'
-              className='input text-white w-full rounded-r-full rounded-l-full h-10 border-slate-200 bg-white'
+              className='input  w-full rounded-r-full rounded-l-full h-10 border-slate-200 bg-white'
             />
             <div className='flex gap-4 justify-between'>
               <input
@@ -46,14 +46,14 @@ export default function Verified({ setProfile }) {
                 onChange={(e) => setAge(e.target.value)}
                 type='text'
                 placeholder='Age'
-                className='input w-[45%] text-white rounded-r-full rounded-l-full h-10 border-slate-200 bg-white'
+                className='input w-[45%]  rounded-r-full rounded-l-full h-10 border-slate-200 bg-white'
               />{' '}
               <input
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
                 type='text'
                 placeholder='Gender'
-                className='input w-[45%] text-white rounded-r-full rounded-l-full h-10 border-slate-200 bg-white'
+                className='input w-[45%] rounded-r-full rounded-l-full h-10 border-slate-200 bg-white'
               />
             </div>
             <textarea
@@ -61,7 +61,7 @@ export default function Verified({ setProfile }) {
               onChange={(e) => setBio(e.target.value)}
               type='text'
               placeholder={`Hey there! Make your profile more interesting \n by adding a few lines about yourself.\n Hobbies, interests, books, movies, or TV shows.`}
-              className='textarea w-full rounded-xl h-28 text-white border-slate-200 placeholder:text-sm bg-white'
+              className='textarea w-full rounded-xl h-28  border-slate-200 placeholder:text-sm bg-white'
             />
           </div>
           {/* <div

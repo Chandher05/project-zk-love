@@ -108,11 +108,11 @@ export const ChatInput = (props) => {
   };
   console.log(array, 'array');
   return (
-    <div className='w-full bg-white h-14 flex justify-between items-center'>
+    <div className='w-full h-12 flex justify-between items-center rounded-lg gap-x-2'>
       <input
         type='text'
         placeholder='start typing'
-        className='placeholder:pl-4 bg-white w-full h-full px-2'
+        className='placeholder:pl-4 bg-white w-full h-full px-4 border-black rounded-l-full rounded-r-full'
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />

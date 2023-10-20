@@ -89,23 +89,26 @@ export default function Login() {
     }
   };
   return (
-    <section className='h-screen flex items-center'>
-      <div className='container mx-auto w-full h-[80%] py-24 max-w-sm login-bg'>
-        <div className='flex flex-col items-center'>
+    <section className='h-screen flex items-center justify-center'>
+      <div className='container mx-auto w-full h-full max-w-sm login-bg flex items-center justify-center'>
+        <div className='flex flex-col items-center w-full'>
           <img
             src={getImage('logo_with_text.png')}
             alt='safe-date-logo'
-            className='w-32 mb-24'
+            className='w-1/2 mb-24'
           ></img>
-          <h3 className='text-white/50 text-center m-2'>Login</h3>
+          <h3 className='text-white/50 text-center mb-4'>Login</h3>
           <Button
-            variant={'secondary'}
+            variant={'login'}
             onClick={() => {
               signIn();
             }}
-            className='bg-transparent/20 text-white border-1 border-[#E89402] hover:bg-transparent/50'
+            className='text-white border-1 border-[#E89402] hover:bg-transparent/80 rounded-lg'
           >
-            Continue with Twitter
+            Continue with{' '}
+            <span>
+              <img src={getImage('x_logo.svg')} alt='x logo' className='ml-2 w-4' />
+            </span>
           </Button>
         </div>
       </div>

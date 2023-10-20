@@ -16,9 +16,6 @@ module.exports = {
       },
     },
     extend: {
-      fontFamily: {
-        inter: ["Inter"],
-      },
       colors: {
         transparent: "transparent",
         current: "currentColor",

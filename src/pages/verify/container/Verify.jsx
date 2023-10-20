@@ -3,8 +3,10 @@ import QRCodeStyling from 'qr-code-styling';
 import { Button } from '../../../../components/ui/button';
 import { SismoConnectButton } from '@sismo-core/sismo-connect-react';
 import { CONFIG, AUTHS, CLAIMS, SIGNATURE_REQUEST } from '../../../configs/sismo-config';
+import { getImage } from '../../../../utils';
 
 import Verified from './Verified';
+import NotVerified from './NotVerified';
 
 export default function Verify() {
   const [url, setUrl] = useState('https://blocktheory.com/');
@@ -41,16 +43,25 @@ export default function Verify() {
   if (pageState == 'verified') {
     return <Verified></Verified>;
   }
+  // else {
+  //   return <NotVerified ageNotVerified={true} />;
+  // }
 
   if (pageState == 'error') {
     return <>NOT VERIFIED</>;
   }
 
   return (
-    <section className='h-screen bg-slate-100'>
-      <div className='container mx-auto flex justify-center items-center w-full h-[600px] max-w-sm'>
+    <section className='h-screen flex items-center justify-center'>
+      <div className='container mx-auto w-full h-full max-w-sm bg-slate-100 flex items-center justify-center'>
         <div className=''>
-          <h3 className='text-2xl m-2 text-center'>Hey! Need you to verify your credentials. ?</h3>
+          <p className='text-2xl mb-10 text-center'>Are you human?</p>
+          <img
+            src={getImage('verify_image.png')}
+            alt='are you human?'
+            className='mb-4 w-2/3 mx-auto'
+          />
+          <h3 className='text-xl m-2 text-center'>Hey! Need you to verify your credentials. ?</h3>
           <p className='text-base text-center text-lightGray leading-6'>
             We want to know its really you. Verify yourself by clicking the button below
           </p>
@@ -80,7 +91,7 @@ export default function Verify() {
                 });
                 const data = await verifiedResult.json();
                 if (verifiedResult.ok) {
-                  console.log(verifiedResult.getUserId(AuthType.VAULT));
+                  // console.log(verifiedResult.getUserId(AuthType.VAULT));
                   console.log('verified');
                   setSismoConnectVerifiedResult(data);
                   setPageState('verified');

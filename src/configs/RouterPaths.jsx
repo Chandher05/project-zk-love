@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import { getImage } from '../../utils';
 import ChatOverview from '../pages/chat/ChatOverview';
 import { ChatThread } from '../pages/chat/ChatThread';
@@ -14,7 +15,11 @@ import Verify from '../pages/verify/container/Verify';
 export const RouterPaths = [
   {
     path: '/',
-    element: <Home></Home>,
+    element: (
+      <PrivateRoute>
+        <Login />
+      </PrivateRoute>
+    ),
   },
   {
     path: '/login',
@@ -22,30 +27,65 @@ export const RouterPaths = [
   },
   {
     path: '/verified',
-    element: <Verified />,
+    element: (
+      <PrivateRoute>
+        <Verified />
+      </PrivateRoute>
+    ),
   },
   {
     path: '/verify',
     element: <Verify />,
+    element: (
+      <PrivateRoute>
+        <Verify />
+      </PrivateRoute>
+    ),
   },
   {
     path: '/passions',
     element: <ProfileSwipe />,
+    element: (
+      <PrivateRoute>
+        <ProfileSwipe />
+      </PrivateRoute>
+    ),
   },
   {
     path: '/chat',
-    element: <ChatOverview />,
+    element: (
+      <PrivateRoute>
+        <ChatOverview />
+      </PrivateRoute>
+    ),
   },
   {
     path: '/chat/:id',
-    element: <ChatThread />,
+    element: (
+      <PrivateRoute>
+        <ChatThread />
+      </PrivateRoute>
+    ),
   },
   {
     path: '/profile',
-    element: <Profile />,
+    element: (
+      <PrivateRoute>
+        <Profile />
+      </PrivateRoute>
+    ),
   },
   {
     path: '/create',
-    element: <PickPassion />,
+    element: (
+      <PrivateRoute>
+        <PickPassion />
+      </PrivateRoute>
+    ),
   },
 ];
+
+function PrivateRoute({ children }) {
+  const auth = true;
+  return auth ? <>{children}</> : <Navigate to='/login' />;
+}

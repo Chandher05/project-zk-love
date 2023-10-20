@@ -7,6 +7,7 @@ import { Label } from '../../../components/ui/label';
 import { profileIntrests } from '../../../constants';
 import { getImage } from '../../../utils';
 import { Footer } from '../chat/ChatOverview';
+import { TablelandInit, readFromTable } from '../../configs/tableland-config';
 
 const dummyProfile = {
   profile_img: 'profile_image_1.png',
@@ -20,19 +21,34 @@ const dummyProfile = {
 
 export default function ProfileSwipe(props) {
   const [showProfile, setShowProfile] = useState(true);
+  const [profiles, setProfiles] = useState([]);
+
+  useEffect(() => {
+    TablelandInit();
+
+    async function read() {
+      const results = await readFromTable();
+      setProfiles(results);
+    }
+    read();
+  }, []);
   console.log(showProfile, 'show profile');
   return (
-    <section className='h-screen bg-slate-100 flex items-center justify-center'>
-      <div className='container mx-auto w-full h-[80%] max-w-sm'>
+    <section className='h-screen flex items-center justify-center'>
+      <div className='relative container mx-auto w-full h-full max-w-sm bg-slate-100 px-0'>
+        <div className='w-full h-14 bg-white flex justify-center items-center'>
+          <p className='text-2xl leading-7 mt-2'>Discover</p>
+        </div>
         {showProfile ? (
-          <>
-            <Header />
-            <SwipeProfileCard setShowProfile={setShowProfile} />
-          </>
+          <div className='flex'>
+            <SwipeProfileCard setShowProfile={setShowProfile} profileData={profiles} />
+          </div>
         ) : (
-          <ProfileCard setShowProfile={setShowProfile} profile={dummyProfile} />
+          <ProfileCard setShowProfile={setShowProfile} profile={{ ...dummyProfile }} />
         )}
-        <Footer />
+        <div className='absolute bottom-0 left-0 w-full'>
+          <Footer />
+        </div>
       </div>
     </section>
   );
@@ -40,7 +56,7 @@ export default function ProfileSwipe(props) {
 
 export const Header = () => {
   return (
-    <div className='w-full flex items-center justify-between mb-5'>
+    <div className='w-full flex items-center  justify-between mb-5'>
       <a href='/home'>
         <img src={getImage('chevron_left.svg')} alt='go back' />
       </a>
@@ -51,9 +67,20 @@ export const Header = () => {
 };
 
 export const SwipeProfileCard = (props) => {
-  const { setShowProfile } = props;
+  const { setShowProfile, profileData } = props;
+  const [index, setIndex] = useState(0);
+  console.log({ profileData });
+
+  const matchAndSwipe = () => {
+    // MATCH
+    setIndex((index) => index + 1);
+  };
+  const rejectAndSwipe = () => {
+    // MATCH
+    setIndex((index) => index + 1);
+  };
   return (
-    <div className='w-3/4 flex flex-col justify-center mx-auto'>
+    <div className='w-3/4 flex flex-col  justify-center mx-auto'>
       <div
         onClick={() => {
           setShowProfile(false);
@@ -67,19 +94,35 @@ export const SwipeProfileCard = (props) => {
       </div>
       <div className='bg-black/10 rounded-lg px-2 py-2 flex items-center justify-between'>
         <div className='flex items-center gap-x-1'>
-          <p className='text-base'>Effie Robinson</p>
+          <p className='text-base'>{profileData[index]?.name}</p>
           <Separator orientation='vertical' className='bg-lightGray h-[16px]' />
-          <p className='text-lightGray text-base'>Age 28</p>
+          <p className='text-lightGray text-base'>Age {profileData[index]?.age}</p>
         </div>
+
         <div className='p-1 bg-[#219653] rounded-lg flex items-center justify-center text-slate-100 text-sm'>
           Verified
         </div>
       </div>
+
+      <div className='bg-black/10 rounded-lg px-2 py-2 mt-5 flex items-center justify-between'>
+        <div className='flex items-center gap-x-1'>
+          <p className='text-base'>{profileData[index]?.bio}</p>
+        </div>
+      </div>
+
       <div className='flex items-center justify-between p-2 my-3'>
-        <button className='rounded-full bg-white flex justify-between items-center p-4'>
+        <button
+          className='rounded-full bg-white flex justify-between items-center p-4'
+          onClick={rejectAndSwipe}
+        >
           <img src={getImage('cross_red.svg')} alt='cross' className='w-14 h-14' />
+          {/* DONT MATCH BUT MOVE TO NEXT PROFILE  */}
         </button>
-        <button className='rounded-full bg-primary-700 flex justify-between items-center p-4'>
+        <button
+          className='rounded-full bg-primary-700 flex justify-between items-center p-4'
+          onClick={matchAndSwipe}
+        >
+          {/* MATCH TO NEXT PROFILE  */}
           <img src={getImage('heart_white.svg')} alt='cross' className='w-14 h-14' />
         </button>
       </div>

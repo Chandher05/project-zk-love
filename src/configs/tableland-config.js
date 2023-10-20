@@ -20,10 +20,11 @@ export async function readFromTable() {
     return results;
 }
 
-export async function writeintoTable({ name, age, gender, bio }) {
+export async function writeintoTable({ name, age, gender, bio, passions }) {
     // Insert a row into the table
     console.log({ name, gender, bio, age });
     // const id = await localStorage.getItem('addr') || '1';
+    passions = JSON.stringify(passions);
     const { meta: insert } = await db
         .prepare(
             `INSERT INTO ${tableName} ( name, age, gender, bio) VALUES ( ?, ?, ?, ?);`

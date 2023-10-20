@@ -40,8 +40,7 @@ export const RouterPaths = [
     ),
   },
   {
-    path: '/passions',
-    element: <ProfileSwipe />,
+    path: '/swipe',
     element: (
       <PrivateRoute>
         <ProfileSwipe />

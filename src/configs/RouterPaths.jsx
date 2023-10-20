@@ -3,12 +3,13 @@ import App from '../pages/app/App';
 import ChatOverview from '../pages/chat/ChatOverview';
 import { ChatThread } from '../pages/chat/ChatThread';
 import Profile from '../pages/create-profile/Profile';
+
 import UploadPhoto from '../pages/create-profile/UploadPhoto';
 import PickPassion from '../pages/create-profile/pickPassion';
 import ProfileSwipe from '../pages/discover/ProfileSwipe';
 import Home from '../pages/home/container/Home';
 import Login from '../pages/login/container/Login';
-import Verified from '../pages/verify/components/Verified';
+import Verified from '../pages/verify/container/Verify';
 import Verify from '../pages/verify/container/Verify';
 
 export const RouterPaths = [
@@ -43,5 +44,9 @@ export const RouterPaths = [
   {
     path: '/profile',
     element: <Profile />,
+  },
+  {
+    path: '/create',
+    element: <PickPassion />,
   },
 ];

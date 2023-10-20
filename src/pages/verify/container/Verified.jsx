@@ -2,8 +2,11 @@ import { React, useRef, useEffect, useState } from 'react';
 import QRCodeStyling from 'qr-code-styling';
 import { Button } from '../../../../components/ui/button';
 import { getImage } from '../../../../utils';
+import { useNavigate } from 'react-router-dom';
 
 export default function Verified(props) {
+  const { name, age, sex } = props;
+  const navigate = useNavigate();
   return (
     <section className='h-screen bg-slate-100'>
       <div className='relative container mx-auto flex justify-center items-center w-full  max-w-sm h-[80%] text-center'>
@@ -34,7 +37,10 @@ export default function Verified(props) {
               />
             </div>
           </div>
-          <div className='absolute bottom-2 left-1/2 -translate-x-1/2'>
+          <div
+            className='absolute bottom-2 left-1/2 -translate-x-1/2'
+            onClick={() => navigate('/create')}
+          >
             <Button variant={'default'}>Continue</Button>
           </div>
         </div>

@@ -46,7 +46,7 @@ export default function ProfileSwipe(props) {
         ) : (
           <ProfileCard setShowProfile={setShowProfile} profile={{ ...dummyProfile }} />
         )}
-        <div className='absolute bottom-0 left-0 w-full'>
+        <div className='absolute bottom-0 w-full'>
           <Footer />
         </div>
       </div>
@@ -56,7 +56,7 @@ export default function ProfileSwipe(props) {
 
 export const Header = () => {
   return (
-    <div className='w-full flex items-center  justify-between mb-5'>
+    <div className='w-full flex items-center justify-between mb-5 py-5 px-2'>
       <a href='/home'>
         <img src={getImage('chevron_left.svg')} alt='go back' />
       </a>
@@ -139,7 +139,7 @@ export const ProfileCard = (props) => {
         alt='profile'
         className='w-full h-[35%] object-cover mb-4'
       />
-      <div className='flex flex-col gap-y-3 px-2'>
+      <div className='flex flex-col gap-y-6 px-3'>
         <div>
           <p className='text-base font-semibold leading-4'>{profile.name}</p>
           <p className='text-base text-lightGray'>{`Age: ${profile.age}`}</p>
@@ -157,7 +157,7 @@ export const ProfileCard = (props) => {
           <div className='flex gap-2 flex-wrap'>
             {profile.intrests.map((_intrest) => {
               return (
-                <Badge variant='outline' key={_intrest} className={`cursor-pointer px-2 py-1`}>
+                <Badge variant='outline' key={_intrest} className={`px-4 py-2`}>
                   {_intrest}
                 </Badge>
               );

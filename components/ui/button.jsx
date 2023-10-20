@@ -16,8 +16,7 @@ const buttonVariants = cva(
         outline:
           'border border-neutral-200 bg-white hover:bg-neutral-100 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:bg-neutral-800 dark:hover:text-neutral-50',
         secondary: 'bg-[#E89402] text-white rounded-r-full rounded-l-full w-full max-w-[70%]',
-        ghost:
-          'hover:bg-neutral-100 hover:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50',
+        ghost: 'hover:bg-primary-100/50 hover:text-white rounded-full',
         link: 'text-neutral-900 underline-offset-4 hover:underline dark:text-neutral-50',
         login: 'bg-black text-neutral-50 hover:bg-primary-700/80 rounded-full w-full max-w-[250px]',
       },

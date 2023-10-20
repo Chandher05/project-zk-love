@@ -5,8 +5,8 @@ import { Button } from '../../../components/ui/button';
 
 export default function Profile(props) {
   return (
-    <section className='h-screen bg-slate-100 flex items-center justify-center'>
-      <div className='container mx-auto w-full h-[80%] max-w-sm relative'>
+    <section className='h-screen flex items-center justify-center'>
+      <div className='container mx-auto w-full h-full max-w-sm relative bg-slate-100 px-0'>
         <div className='profile-bg w-full h-full'>
           <div className='w-full h-[30%] text-center'>
             <p className='text-white text-lg pt-8'>Profile</p>
@@ -16,7 +16,7 @@ export default function Profile(props) {
             <div className='flex flex-col items-center justify-center mt-6 gap-y-1'>
               <img src={getImage('upload_icon.svg')} alt='' className='w-14 h-14' />
               <p className='text-black/30 text-sm mb-10'>Add photos</p>
-              <div className='flex flex-col gap-y-2 w-full items-center justify-center'>
+              <div className='flex flex-col gap-y-2 w-full items-center justify-center mt-12'>
                 <Button variant='secondary'>Your Profile is verified</Button>
                 <Button variant='ghost' className='text-primary-700 text-base'>
                   Logout

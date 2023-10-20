@@ -56,16 +56,16 @@ export const ChatThread = (props) => {
     }
   }, [containerRef, array]);
   return (
-    <section className='h-screen bg-slate-100 flex items-center justify-center'>
-      <div className='relative container mx-auto w-full h-[80%] max-w-sm'>
+    <section className='h-screen flex items-center justify-center'>
+      <div className='relative container mx-auto w-full h-full max-w-sm bg-slate-100 px-0'>
         <ChatHeader image={thread.image} name={thread.name} />
-        <div className='flex flex-col h-[calc(90%-60px)] overflow-y-scroll'>
+        <div className='flex flex-col h-[calc(90%-60px)] overflow-y-scroll px-1'>
           {array.map((_msg) => {
             return <Message message={_msg.msg} id={_msg.add} />;
           })}
-          <div className='w-full h-[1px] bg-black' ref={containerRef}></div>
+          <div className='w-full h-[1px] bg-transparent' ref={containerRef}></div>
         </div>
-        <div className='container absolute bottom-0 left-0 w-full'>
+        <div className='container absolute bottom-0 left-0 w-full py-4'>
           <ChatInput setArray={setArray} array={array} />
         </div>
       </div>

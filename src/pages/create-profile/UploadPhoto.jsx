@@ -13,9 +13,9 @@ export default function UploadPhoto() {
   };
   return (
     <section className='h-screen flex items-center justify-center'>
-      <div className='container mx-auto w-full h-[80%] max-w-sm bg-slate-100 flex items-center justify-center relative'>
-        <div className='flex flex-col gap-y-6 items-center'>
-          <div>
+      <div className='container mx-auto w-full h-full max-w-sm bg-slate-100 flex justify-center relative px-0'>
+        <div className='flex flex-col gap-y-6 items-center mt-20 t'>
+          <div className='w-full text-left px-2'>
             <h2 className='text-2xl leading-7 text-black'>Photos & videos</h2>
             <p className='text-base text-lightGray leading-5'>Tell a story with your best photos</p>
           </div>
@@ -31,19 +31,12 @@ export default function UploadPhoto() {
               />
             </div>
           </div>
-          <img src={file} className='w-1/2' />
-          <div
-            className='absolute bottom-8 left-1/2 -translate-x-1/2 w-1/2 flex flex-col gap-y-2'
-            onClick={() => {}}
-          >
-            <Button onClick={() => {}} className='w-full mx-auto h-auto my-0'>
+          <img src={file} className='w-[90%]' />
+          <div className='absolute bottom-8 flex flex-col gap-y-2 w-full' onClick={() => {}}>
+            <Button onClick={() => {}} className='my-0 mx-auto'>
               Start matching
             </Button>
-            <Button
-              variant='ghost'
-              className={'w-full mx-auto h-auto my-0 text-primary-700'}
-              onClick={() => {}}
-            >
+            <Button variant='ghost' className={'w-full my-0 text-primary-700'} onClick={() => {}}>
               Skip
             </Button>
           </div>

@@ -53,7 +53,7 @@ export default function Verify() {
 
   return (
     <section className='h-screen flex items-center justify-center'>
-      <div className='container mx-auto w-full h-full max-w-sm bg-slate-100 flex items-center justify-center'>
+      <div className='container mx-auto w-full h-full max-w-sm bg-slate-100 flex items-center justify-center px-0'>
         <div className=''>
           <p className='text-2xl mb-10 text-center'>Are you human?</p>
           <img

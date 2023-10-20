@@ -31,6 +31,11 @@ export const RouterPaths = [
   //   element: <Verified />,
   // },
   {
+    path: '/create',
+    element: <PickPassion />,
+  },
+
+  {
     path: '/verified',
     element: (
       <PrivateRoute>

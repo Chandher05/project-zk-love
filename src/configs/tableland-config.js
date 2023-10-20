@@ -11,15 +11,6 @@ export function init({ signer }) {
         db = new Database();
     }
 }
-useEffect(() => {
-    async function callOnLoad() {
-        const { results } = await db
-            .prepare(`SELECT * FROM ${tableName};`)
-            .all();
-        console.log(results);
-    }
-    callOnLoad();
-});
 
 export async function readFromTable() {
     const { results } = await db

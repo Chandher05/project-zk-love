@@ -21,24 +21,24 @@ export default function Verified(props) {
             <input
               type='text'
               placeholder='Name'
-              className='input w-full rounded-r-full rounded-l-full h-10 border-slate-200'
+              className='input text-white w-full rounded-r-full rounded-l-full h-10 border-slate-200'
             />
             <div className='flex gap-4 justify-between'>
               <input
                 type='text'
                 placeholder='Age'
-                className='input w-[45%] rounded-r-full rounded-l-full h-10 border-slate-200'
+                className='input w-[45%] text-white rounded-r-full rounded-l-full h-10 border-slate-200'
               />{' '}
               <input
                 type='text'
                 placeholder='Gender'
-                className='input w-[45%] rounded-r-full rounded-l-full h-10 border-slate-200'
+                className='input w-[45%] text-white rounded-r-full rounded-l-full h-10 border-slate-200'
               />
             </div>
             <textarea
               type='text'
               placeholder={`Hey there! Make your profile more interesting \n by adding a few lines about yourself.\n Hobbies, interests, books, movies, or TV shows.`}
-              className='textarea w-full rounded-xl h-28 border-slate-200 placeholder:text-sm'
+              className='textarea w-full rounded-xl h-28 text-white border-slate-200 placeholder:text-sm'
             />
           </div>
           {/* <div

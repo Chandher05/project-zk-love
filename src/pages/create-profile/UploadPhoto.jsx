@@ -38,7 +38,7 @@ export default function UploadPhoto() {
             </Button>
             <Button variant='ghost' className={'w-full my-0 text-primary-700'} onClick={() => {}}>
               Skip
-            </Button>
+            </Button>{' '}
           </div>
         </div>
       </div>

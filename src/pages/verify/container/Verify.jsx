@@ -5,8 +5,9 @@ import { SismoConnectButton } from '@sismo-core/sismo-connect-react';
 import { CONFIG, AUTHS, CLAIMS, SIGNATURE_REQUEST } from '../../../configs/sismo-config';
 import { getImage } from '../../../../utils';
 
-import Verified from './Verified';
+import Verified from '../../create-profile/Verified';
 import NotVerified from './NotVerified';
+import { Navigate } from 'react-router-dom';
 
 export default function Verify() {
   const [url, setUrl] = useState('https://blocktheory.com/');
@@ -41,7 +42,7 @@ export default function Verify() {
   //   },
   // });
   if (pageState == 'verified') {
-    return <Verified></Verified>;
+    return <Navigate to='/create'></Navigate>;
   }
   // else {
   //   return <NotVerified ageNotVerified={true} />;

@@ -3,7 +3,7 @@ import { Database } from "@tableland/sdk";
 const tableName = "profile_420_23"; // Our predifined Table in Studio
 let db;
 
-export function init({ signer }) {
+export function init({ signer = null }) {
     if (signer) {
         db = new Database({ signer });
     }

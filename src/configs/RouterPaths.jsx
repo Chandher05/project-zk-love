@@ -12,6 +12,7 @@ import Login from '../pages/login/container/Login';
 import NotVerified from '../pages/verify/container/NotVerified';
 import Verified from '../pages/verify/container/Verify';
 import Verify from '../pages/verify/container/Verify';
+import CreateProfile from '../pages/create-profile';
 
 export const RouterPaths = [
   {
@@ -88,13 +89,13 @@ export const RouterPaths = [
     path: '/create',
     element: (
       <PrivateRoute>
-        <PickPassion />
+        <CreateProfile />
       </PrivateRoute>
     ),
   },
 ];
 
 function PrivateRoute({ children }) {
-  const auth = true;
-  return auth ? <>{children}</> : <Navigate to='/login' />;
+  const auth = localStorage.getItem('loggedIn');
+  return auth == 'true' ? <>{children}</> : <Navigate to='/login' />;
 }

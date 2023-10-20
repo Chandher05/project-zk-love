@@ -105,7 +105,7 @@ export default function Login() {
             }}
             className='bg-transparent/20 text-white border-1 border-[#E89402] hover:bg-transparent/50'
           >
-            Continue with Google
+            Continue with Twitter
           </Button>
         </div>
       </div>

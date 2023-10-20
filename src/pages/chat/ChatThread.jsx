@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { getImage } from '../../../utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRef } from 'react';
 const dummyMsgData = [
   {
     id: 1,
@@ -26,6 +27,12 @@ const dummyMsgData = [
 ];
 
 const dummyMsgs = [
+  { add: '1234', msg: 'Hey hey' },
+  { add: '12', msg: 'Hey there' },
+  { add: '1234', msg: 'Hey' },
+  { add: '12', msg: 'Hey' },
+  { add: '1234', msg: 'Hey' },
+  { add: '12', msg: 'Hey' },
   { add: '1234', msg: 'Hey' },
   { add: '12', msg: 'Hey' },
   { add: '1234', msg: 'Hey' },
@@ -40,14 +47,23 @@ export const ChatThread = (props) => {
   const thread = dummyMsgData.filter((msg) => msg.id == id)[0];
   console.log(id, 'id from thread');
   console.log(thread, 'thread thread thread');
+  const containerRef = useRef(null);
+  useEffect(() => {
+    if (containerRef && containerRef.current) {
+      const element = containerRef.current;
+      element.scrollIntoView({ behavior: 'smooth' });
+      console.log(containerRef, 'cont');
+    }
+  }, [containerRef, array]);
   return (
     <section className='h-screen bg-slate-100 flex items-center justify-center'>
       <div className='relative container mx-auto w-full h-[80%] max-w-sm'>
         <ChatHeader image={thread.image} name={thread.name} />
-        <div className='flex flex-col-reverse'>
+        <div className='flex flex-col h-[calc(90%-60px)] overflow-y-scroll'>
           {array.map((_msg) => {
-            return <Message message={_msg.msg} id={_msg.id} />;
+            return <Message message={_msg.msg} id={_msg.add} />;
           })}
+          <div className='w-full h-[1px] bg-black' ref={containerRef}></div>
         </div>
         <div className='container absolute bottom-0 left-0 w-full'>
           <ChatInput setArray={setArray} array={array} />
@@ -112,6 +128,7 @@ export const ChatInput = (props) => {
 
 export const Message = (props) => {
   const { message, id } = props;
+  console.log(id, 'id');
   return (
     <div className={`chat ${id == '12' ? 'chat-start' : 'chat-end'}`}>
       <div

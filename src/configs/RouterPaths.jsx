@@ -9,6 +9,7 @@ import NotVerified from '../pages/verify/container/NotVerified';
 import Verified from '../pages/verify/container/Verify';
 import Verify from '../pages/verify/container/Verify';
 import CreateProfile from '../pages/create-profile';
+import ItsAMatch from '../pages/discover/ItsAMatch';
 
 export const RouterPaths = [
   {

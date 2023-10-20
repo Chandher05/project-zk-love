@@ -115,11 +115,12 @@ export const ChatInput = (props) => {
         className='placeholder:pl-4 bg-white w-full h-full px-4 border-black rounded-l-full rounded-r-full'
         value={input}
         onChange={(e) => setInput(e.target.value)}
-      />
+      ></input>
+
       <img
-        src={getImage('chevron_left.svg')}
+        src={getImage('send_icon.svg')}
         alt='back'
-        className='rotate-180'
+        className='w-10 h-10 rounded-full border border-slate-200'
         onClick={addToArray}
       />
     </div>

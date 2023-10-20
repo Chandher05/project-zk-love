@@ -23,7 +23,7 @@ export default function PickPassion({ setProfile }) {
             <h2 className='text-2xl leading-7 text-black'>Passion</h2>
             <p className='text-base text-lightGray leading-5'>Pick a passion to find your tribe</p>
           </div>
-          <div className='flex flex-wrap gap-x-2 gap-y-3'>
+          <div className='flex flex-col gap-y-10'>
             <div className='flex flex-wrap gap-4'>
               {profileIntrests.map((interest) => {
                 return <BadgeButton interest={interest} add={addPassion} remove={removePassion} />;
@@ -70,7 +70,7 @@ function BadgeButton({ interest, add, remove }) {
     <Badge
       variant='outline'
       key={interest}
-      className={`cursor-pointer ${active ? 'bg-slate-700 text-slate-100' : ''}`}
+      className={`cursor-pointer px-4 py-2 ${active ? 'bg-slate-700 text-slate-100' : ''}`}
       onClick={() => {
         if (active) {
           remove(interest);

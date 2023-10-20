@@ -67,7 +67,7 @@ export const ChatThreads = (props) => {
   };
   return (
     <div
-      className='w-full h-12 border-b border-slate-300 flex items-center justify-between px-2 py-1'
+      className='w-full h-16 border-b border-slate-300 flex items-center justify-between px-2 py-1'
       onClick={handleClick}
     >
       <div className='flex gap-2 items-center'>

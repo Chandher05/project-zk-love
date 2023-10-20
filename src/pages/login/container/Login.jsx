@@ -31,7 +31,7 @@ export default function Login() {
         displayName: polygonTestnet.name,
         blockExplorer: polygonTestnet.explorer.url,
         ticker: polygonTestnet.symbol,
-        tickerName: 'Ethereum',
+        tickerName: 'Mumbai',
       };
 
       const web3auth = new Web3AuthNoModal({
@@ -73,7 +73,7 @@ export default function Login() {
   const signIn = async () => {
     try {
       const web3authProvider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
-        loginProvider: 'google',
+        loginProvider: 'twitter',
       });
 
       const ethProvider = new ethers.providers.Web3Provider(web3authProvider);

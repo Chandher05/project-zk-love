@@ -1,5 +1,4 @@
 import { getImage } from '../../utils';
-import App from '../pages/app/App';
 import ChatOverview from '../pages/chat/ChatOverview';
 import { ChatThread } from '../pages/chat/ChatThread';
 import Profile from '../pages/create-profile/Profile';

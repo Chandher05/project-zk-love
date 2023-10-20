@@ -42,6 +42,10 @@ export default function Verify() {
     return <Verified></Verified>;
   }
 
+  if (pageState == 'error') {
+    return <>NOT VERIFIED</>;
+  }
+
   return (
     <section className='h-screen bg-slate-100'>
       <div className='container mx-auto flex justify-center items-center w-full h-[600px] max-w-sm'>
@@ -76,6 +80,7 @@ export default function Verify() {
                 });
                 const data = await verifiedResult.json();
                 if (verifiedResult.ok) {
+                  console.log(verifiedResult.getUserId(AuthType.VAULT));
                   console.log('verified');
                   setSismoConnectVerifiedResult(data);
                   setPageState('verified');

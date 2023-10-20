@@ -1,7 +1,6 @@
 import { React, useRef, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { getImage } from '../../../utils/index';
-
 const dummyMsgData = [
   {
     id: 1,
@@ -32,8 +31,8 @@ export default function ChatOverview() {
   console.log(msgId, 'msg');
   console.log(showThread, 'showThread');
   return (
-    <section className='h-screen bg-slate-100 flex items-center justify-center'>
-      <div className='relative container mx-auto w-full h-[80%] max-w-sm'>
+    <section className='h-screen flex items-center justify-center'>
+      <div className='relative container mx-auto w-full h-full max-w-sm bg-slate-100 px-0'>
         <div className='w-full h-14 bg-white flex justify-center items-center'>
           <p className='text-2xl leading-7 mt-2'>Chat</p>
         </div>
@@ -50,7 +49,7 @@ export default function ChatOverview() {
             />
           );
         })}
-        <div className='container absolute bottom-0 left-0 w-full'>
+        <div className='absolute bottom-0 left-0 w-full'>
           <Footer />
         </div>
       </div>
@@ -86,16 +85,34 @@ export const ChatThreads = (props) => {
 };
 
 export const Footer = () => {
+  const location = useLocation();
+  console.log(location.pathname, 'params');
   return (
-    <div className='flex justify-between p-2 bg-white'>
+    <div className='flex justify-between py-2 px-3 bg-white'>
       <a href='/profile'>
-        <img src={getImage('footer_account_icon.svg')} alt='' />
+        <img
+          src={getImage(
+            `${
+              location.pathname == '/profile'
+                ? 'account_circle_active.svg'
+                : 'footer_account_icon.svg'
+            }`,
+          )}
+          alt=''
+        />
       </a>
       <a>
         <img src={getImage('footer_search_icon.svg')} alt='' />
       </a>
       <a href='/chat'>
-        <img src={getImage('footer_chat_icon.svg')} alt='' />
+        <img
+          src={getImage(
+            `${
+              location.pathname == '/chat' ? 'footer_chat_icon_active.svg' : 'footer_chat_icon.svg'
+            }`,
+          )}
+          alt=''
+        />
       </a>
     </div>
   );

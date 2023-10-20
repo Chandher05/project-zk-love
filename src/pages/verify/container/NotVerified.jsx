@@ -6,7 +6,7 @@ export default function NotVerified(props) {
   const { ageNotVerified = true } = props;
   return (
     <section className='h-screen flex items-center justify-center'>
-      <div className='container mx-auto w-full h-full max-w-sm bg-slate-100 flex items-center justify-center relative'>
+      <div className='container mx-auto w-full h-full max-w-sm bg-slate-100 flex items-center justify-center relative px-0'>
         <div className='text-center'>
           <h2 className='text-2xl leading-9'>Oops,</h2>
           <p className='text-base mb-16'>your verification didn't go through!</p>

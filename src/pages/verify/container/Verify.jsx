@@ -42,9 +42,10 @@ export default function Verify() {
   // });
   if (pageState == 'verified') {
     return <Verified></Verified>;
-  } else {
-    return <NotVerified ageNotVerified={true} />;
   }
+  // else {
+  //   return <NotVerified ageNotVerified={true} />;
+  // }
 
   if (pageState == 'error') {
     return <>NOT VERIFIED</>;
@@ -52,12 +53,13 @@ export default function Verify() {
 
   return (
     <section className='h-screen flex items-center justify-center'>
-      <div className='container mx-auto w-full h-[80%] max-w-sm bg-slate-100 flex items-center justify-center'>
+      <div className='container mx-auto w-full h-full max-w-sm bg-slate-100 flex items-center justify-center'>
         <div className=''>
+          <p className='text-2xl mb-10 text-center'>Are you human?</p>
           <img
             src={getImage('verify_image.png')}
             alt='are you human?'
-            className='mb-2 w-1/2 mx-auto'
+            className='mb-4 w-2/3 mx-auto'
           />
           <h3 className='text-xl m-2 text-center'>Hey! Need you to verify your credentials. ?</h3>
           <p className='text-base text-center text-lightGray leading-6'>
@@ -89,7 +91,7 @@ export default function Verify() {
                 });
                 const data = await verifiedResult.json();
                 if (verifiedResult.ok) {
-                  console.log(verifiedResult.getUserId(AuthType.VAULT));
+                  // console.log(verifiedResult.getUserId(AuthType.VAULT));
                   console.log('verified');
                   setSismoConnectVerifiedResult(data);
                   setPageState('verified');

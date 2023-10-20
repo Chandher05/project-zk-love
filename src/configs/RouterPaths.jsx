@@ -40,7 +40,6 @@ export const RouterPaths = [
   },
   {
     path: '/verify',
-    element: <Verify />,
     element: (
       <PrivateRoute>
         <Verify />

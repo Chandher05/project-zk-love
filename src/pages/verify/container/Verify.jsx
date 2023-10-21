@@ -86,10 +86,13 @@ export default function Verify() {
               onResponse={async (response) => {
                 setSismoConnectResponse(response);
                 setPageState('verifying');
-                const verifiedResult = await fetch('http://localhost:3000/api/verify', {
-                  method: 'POST',
-                  body: JSON.stringify(response),
-                });
+                const verifiedResult = await fetch(
+                  'https://sismo-connect-offchain.vercel.app/api/verify',
+                  {
+                    method: 'POST',
+                    body: JSON.stringify(response),
+                  },
+                );
                 const data = await verifiedResult.json();
                 if (verifiedResult.ok) {
                   // console.log(verifiedResult.getUserId(AuthType.VAULT));

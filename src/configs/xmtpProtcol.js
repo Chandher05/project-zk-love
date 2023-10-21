@@ -1,4 +1,5 @@
 import { Client } from "@xmtp/xmtp-js";
+import { ethers } from 'ethers';
 // import {
 //     AttachmentCodec,
 //     RemoteAttachmentCodec,
@@ -31,6 +32,13 @@ class XMTPProtocol {
         return initialize;
     }
 
+
+    async getAllConversations() {
+        const xmtpConversation = await this.xmtpClient?.conversations.list();
+        console.log({ xmtpConversation })
+        return xmtpConversation;
+    }
+
     // for fetching all conversations
     async getConversation(address) {
         await this.initializeUser();
@@ -52,8 +60,14 @@ class XMTPProtocol {
     }
 }
 
-const customXMTPMessagingService = (walletClient) => {
-    return new XMTPProtocol(walletClient);
+const customXMTPMessagingService = () => {
+    if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        return new XMTPProtocol(signer);
+    } else {
+        return false;
+    }
 };
 
 export { customXMTPMessagingService };

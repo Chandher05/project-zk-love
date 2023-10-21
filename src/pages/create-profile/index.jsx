@@ -4,6 +4,7 @@ import PickPassion from './pickPassion';
 import { Upload } from 'lucide-react';
 import UploadPhoto from './UploadPhoto';
 import { TablelandInit, writeintoTable } from '../../configs/tableland-config';
+import { Navigate } from 'react-router-dom';
 
 function CreateProfile() {
   const [step, setStep] = useState(1);
@@ -14,13 +15,17 @@ function CreateProfile() {
       return { ...prev, ...data };
     });
     if (step == 3) submitProfile();
-    setStep((prev) => prev + 1);
+    else {
+      setStep((prev) => prev + 1);
+    }
   };
 
-  const submitProfile = () => {
+  const submitProfile = async () => {
     console.log({ profile });
     TablelandInit();
-    writeintoTable({ ...profile });
+    await writeintoTable({ ...profile });
+    console.log('DONE');
+    confirm('ALERT! This is Sent to the Database');
   };
   if (step == 1) {
     return <Verified setProfile={addToProfile}></Verified>;
@@ -29,6 +34,6 @@ function CreateProfile() {
   } else if (step == 3) {
     return <UploadPhoto addToProfile={addToProfile}></UploadPhoto>;
   }
-  return <>Profile Created</>;
+  return <Navigate to='/swipe'></Navigate>;
 }
 export default CreateProfile;

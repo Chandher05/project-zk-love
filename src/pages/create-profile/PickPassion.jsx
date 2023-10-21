@@ -25,8 +25,15 @@ export default function PickPassion({ setProfile }) {
           </div>
           <div className='flex flex-col gap-y-10'>
             <div className='flex flex-wrap gap-4'>
-              {profileIntrests.map((interest) => {
-                return <BadgeButton interest={interest} add={addPassion} remove={removePassion} />;
+              {profileIntrests.map((interest, id) => {
+                return (
+                  <BadgeButton
+                    id={id}
+                    interest={interest}
+                    add={addPassion}
+                    remove={removePassion}
+                  />
+                );
               })}
             </div>
             <div>

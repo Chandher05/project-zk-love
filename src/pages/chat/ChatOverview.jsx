@@ -1,6 +1,7 @@
 import { React, useRef, useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { getImage } from '../../../utils/index';
+
 const dummyMsgData = [
   {
     id: 1,

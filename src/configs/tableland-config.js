@@ -1,6 +1,7 @@
 import { Database } from "@tableland/sdk";
 
 const tableName = "projectzkloveprofile_80001_7954"; // Our predifined Table in Studio
+// const tableName = "zkloveprofile_80001_8038"; // Our predifined Table in Studio
 let db;
 
 export function TablelandInit() {
@@ -19,6 +20,15 @@ export async function readFromTable() {
     console.log(results);
     return results;
 }
+
+export async function readMyProfile({ id }) {
+    const { results } = await db
+        .prepare(`SELECT * FROM ${tableName} WHERE id=${id};`)
+        .all();
+    console.log(results);
+    return results;
+}
+
 
 export async function writeintoTable({ name, age, gender, bio, passions }) {
     // Insert a row into the table

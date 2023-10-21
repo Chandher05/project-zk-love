@@ -27,7 +27,7 @@ export async function readMyProfile({ id }) {
         .all();
     console.log(results);
     return results;
-}
+} // to get the Profule for the ID
 
 
 export async function writeintoTable({ name, age, gender, bio, passions }) {

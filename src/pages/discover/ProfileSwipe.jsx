@@ -9,19 +9,13 @@ import { getImage } from '../../../utils';
 import { Footer } from '../chat/ChatOverview';
 import { TablelandInit, readFromTable } from '../../configs/tableland-config';
 
-const dummyProfile = {
-  profile_img: 'profile_image_1.png',
-  name: 'Effie Robinson',
-  age: '28',
-  place: 'New York',
-  about:
-    "Hey there! I'm a 25-year-old travel enthusiast who's always up for an adventure. I'm looking for someone who is kind, funny, and loves to explore new places.",
-  intrests: ['Sports', 'Music', 'Travel', 'Photography', 'Camping', 'Dancing', 'Gadget freak'],
-};
-
 export default function ProfileSwipe(props) {
   const [showProfile, setShowProfile] = useState(true);
   const [profiles, setProfiles] = useState([]);
+
+  const [noProfile, setNoProfile] = useState(false);
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
     TablelandInit();
@@ -33,18 +27,36 @@ export default function ProfileSwipe(props) {
     read();
   }, []);
   console.log(showProfile, 'show profile');
+
+  const setProfileIndex = (index, match) => {
+    // write into match
+
+    if (index + 1 > profiles.length) {
+      setNoProfileToShow(true);
+    }
+
+    if (index + 1 < profiles?.length) {
+      setSelectedIndex(index + 1);
+    }
+  };
   return (
     <section className='h-screen flex items-center justify-center'>
       <div className='relative container mx-auto w-full h-full max-w-sm bg-slate-100 px-0'>
         <div className='w-full h-14 bg-white flex justify-center items-center'>
           <p className='text-2xl leading-7 mt-2'>Discover</p>
         </div>
-        {showProfile ? (
+        {noProfile && <div className='noProfile'>No Profiles to Show</div>}
+        {showProfile && !noProfile ? (
           <div className='flex'>
-            <SwipeProfileCard setShowProfile={setShowProfile} profileData={profiles} />
+            <SwipeProfileCard
+              setShowProfile={setShowProfile}
+              profileData={profiles}
+              index={selectedIndex}
+              setProfileIndex={setProfileIndex}
+            />
           </div>
         ) : (
-          <ProfileCard setShowProfile={setShowProfile} profile={{ ...dummyProfile }} />
+          <ProfileCard setShowProfile={setShowProfile} profile={profiles[selectedIndex]} />
         )}
         <div className='absolute bottom-0 w-full'>
           <Footer />
@@ -67,17 +79,16 @@ export const Header = () => {
 };
 
 export const SwipeProfileCard = (props) => {
-  const { setShowProfile, profileData } = props;
-  const [index, setIndex] = useState(0);
+  const { setShowProfile, profileData, setProfileIndex, index } = props;
   console.log({ profileData });
 
   const matchAndSwipe = () => {
     // MATCH
-    setIndex((index) => index + 1);
+    setProfileIndex(index, true);
   };
   const rejectAndSwipe = () => {
     // MATCH
-    setIndex((index) => index + 1);
+    setProfileIndex(index, false);
   };
   return (
     <div className='w-3/4 flex flex-col  justify-center mx-auto'>
@@ -144,18 +155,18 @@ export const ProfileCard = (props) => {
           <p className='text-base font-semibold leading-4'>{profile.name}</p>
           <p className='text-base text-lightGray'>{`Age: ${profile.age}`}</p>
         </div>
-        <div>
+        {/* <div>
           <p className='text-base font-semibold leading-4'>{'Place'}</p>
           <p className='text-base text-lightGray'>{profile.place}</p>
-        </div>
+        </div> */}
         <div>
           <p className='text-base font-semibold leading-4'>About</p>
-          <p className='text-base text-lightGray'>{profile.about}</p>
+          <p className='text-base text-lightGray'>{profile.bio}</p>
         </div>
         <div>
-          <p className='text-base font-semibold leading-4 mb-2'>Intrests</p>
+          <p className='text-base font-semibold leading-4 mb-2'>Passions</p>
           <div className='flex gap-2 flex-wrap'>
-            {profile.intrests.map((_intrest) => {
+            {profile?.passions?.map((_intrest) => {
               return (
                 <Badge variant='outline' key={_intrest} className={`px-4 py-2`}>
                   {_intrest}

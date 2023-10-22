@@ -104,7 +104,7 @@ export const SwipeProfileCard = (props) => {
         }}
       >
         <img
-          src={getImage('profile_image_1.png')}
+          src={profileData[index]?.profile}
           alt='profile image'
           className='w-full mb-4 cursor-pointer'
         />
@@ -151,11 +151,7 @@ export const ProfileCard = (props) => {
   const { setShowProfile, profile } = props;
   return (
     <div className='w-full h-full relative'>
-      <img
-        src={getImage(profile.profile_img)}
-        alt='profile'
-        className='w-full h-[35%] object-cover mb-4'
-      />
+      <img src={profile?.profile} alt='profile' className='w-full h-[35%] object-cover mb-4' />
       <div className='flex flex-col gap-y-6 px-3'>
         <div>
           <p className='text-base font-semibold leading-4'>{profile.name}</p>

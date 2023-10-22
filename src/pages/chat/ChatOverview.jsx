@@ -1,7 +1,7 @@
 import { React, useRef, useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { getImage } from '../../../utils/index';
-import { customXMTPMessagingService } from '../../configs/xmtpProtcol';
+import { customXMTPMessagingService } from '../../configs/xmtpProtocol';
 
 const dummyMsgData = [
   {
@@ -78,7 +78,7 @@ export const ChatThreads = (props) => {
   };
   return (
     <div
-      className='w-full h-16 border-b border-slate-300 flex items-center justify-between px-2 py-1'
+      className='w-full h-16 border-b border-slate-300 flex items-center justify-between px-2 py-1 cursor-pointer'
       onClick={handleClick}
     >
       <div className='flex gap-2 items-center'>

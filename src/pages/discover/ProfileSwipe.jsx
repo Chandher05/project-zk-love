@@ -31,8 +31,8 @@ export default function ProfileSwipe(props) {
   const setProfileIndex = (index, match) => {
     // write into match
 
-    if (index + 1 > profiles.length) {
-      setNoProfileToShow(true);
+    if (index + 1 >= profiles.length) {
+      setNoProfile(true);
     }
 
     if (index + 1 < profiles?.length) {
@@ -45,7 +45,11 @@ export default function ProfileSwipe(props) {
         <div className='w-full h-14 bg-white flex justify-center items-center'>
           <p className='text-2xl leading-7 mt-2'>Discover</p>
         </div>
-        {noProfile && <div className='noProfile'>No Profiles to Show</div>}
+        {noProfile && (
+          <div>
+            <NoProfileToShow></NoProfileToShow>
+          </div>
+        )}
         {showProfile && !noProfile ? (
           <div className='flex'>
             <SwipeProfileCard
@@ -56,7 +60,9 @@ export default function ProfileSwipe(props) {
             />
           </div>
         ) : (
-          <ProfileCard setShowProfile={setShowProfile} profile={profiles[selectedIndex]} />
+          !noProfile && (
+            <ProfileCard setShowProfile={setShowProfile} profile={profiles[selectedIndex]} />
+          )
         )}
         <div className='absolute bottom-0 w-full'>
           <Footer />
@@ -103,7 +109,7 @@ export const SwipeProfileCard = (props) => {
           className='w-full mb-4 cursor-pointer'
         />
       </div>
-      <div className='bg-black/10 rounded-lg px-2 py-2 flex items-center justify-between'>
+      <div className='bg-black/10 rounded-lg px-2 py-2 flex items-center justify-between h-full'>
         <div className='flex items-center gap-x-1'>
           <p className='text-base'>{profileData[index]?.name}</p>
           <Separator orientation='vertical' className='bg-lightGray h-[16px]' />
@@ -187,3 +193,11 @@ export const ProfileCard = (props) => {
     </div>
   );
 };
+
+function NoProfileToShow() {
+  return (
+    <div className='flex justify-center items-center'>
+      <h1 className='text-lg font-bold h-screen'>No more profiles left</h1>
+    </div>
+  );
+}

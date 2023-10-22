@@ -82,8 +82,8 @@ export default function Login() {
 
         const ethProvider = new ethers.providers.Web3Provider(web3authProvider);
         const signer = await ethProvider.getSigner();
-        const add = await signer.getAddress();
-        localStorage.setItem('addr', add);
+        const addr = await signer.getAddress();
+        localStorage.setItem('addr', addr);
         localStorage.setItem('loggedIn', 'true');
         setProvider(web3authProvider);
         navigate('/verify');

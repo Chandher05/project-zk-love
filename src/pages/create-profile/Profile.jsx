@@ -4,6 +4,11 @@ import { getImage } from '../../../utils';
 import { Button } from '../../../components/ui/button';
 
 export default function Profile(props) {
+  // await web3auth.logout();
+  const id = localStorage.getItem('addr');
+  const profile = readMyProfile({ id });
+  // get from tableland for the address
+
   return (
     <section className='h-screen flex items-center justify-center'>
       <div className='container mx-auto w-full h-full max-w-sm relative bg-slate-100 px-0'>

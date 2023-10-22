@@ -12,7 +12,11 @@ export default function ItsAMatch() {
 
   const startChat = () => {
     console.log('test');
-    navigate(`/chat/${addr}`);
+    navigate(`/chat-view/${addr}`, {
+      name: name,
+      addr: addr,
+      profile: profile,
+    });
   };
 
   const navigateBack = () => {

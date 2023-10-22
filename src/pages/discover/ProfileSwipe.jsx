@@ -27,7 +27,7 @@ export default function ProfileSwipe(props) {
 
     async function read() {
       const results = await readFromTable();
-      setProfiles(results);
+      setProfiles(results.filter((profile) => profile.gender != 'Male'));
     }
     read();
   }, []);

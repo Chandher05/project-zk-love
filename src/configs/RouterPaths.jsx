@@ -48,11 +48,12 @@ export const RouterPaths = [
       </PrivateRoute>
     ),
   },
+
   {
-    path: '/chat',
+    path: '/chat-view/:id',
     element: (
       <PrivateRoute>
-        <ChatOverview />
+        <ChatThread />
       </PrivateRoute>
     ),
   },
@@ -61,6 +62,14 @@ export const RouterPaths = [
     element: (
       <PrivateRoute>
         <ChatThread />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: '/chat',
+    element: (
+      <PrivateRoute>
+        <ChatOverview />
       </PrivateRoute>
     ),
   },

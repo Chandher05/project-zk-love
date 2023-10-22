@@ -8,6 +8,8 @@ import { profileIntrests } from '../../../constants';
 import { getImage } from '../../../utils';
 import { Footer } from '../chat/ChatOverview';
 import { TablelandInit, readFromTable } from '../../configs/tableland-config';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfileSwipe(props) {
   const [showProfile, setShowProfile] = useState(true);
@@ -16,6 +18,9 @@ export default function ProfileSwipe(props) {
   const [noProfile, setNoProfile] = useState(false);
 
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const [match, setMatch] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     TablelandInit();
@@ -38,6 +43,17 @@ export default function ProfileSwipe(props) {
     if (index + 1 < profiles?.length) {
       setSelectedIndex(index + 1);
     }
+
+    if (match) {
+      navigate('/match', {
+        state: {
+          name: profiles[index].name,
+          addr: profiles[index].addr,
+          profile: profiles[index].profile,
+        },
+      });
+      // return <Navigate to='/match'></Navigate>;
+    }
   };
   return (
     <section className='h-screen flex items-center justify-center'>
@@ -53,6 +69,7 @@ export default function ProfileSwipe(props) {
         {showProfile && !noProfile ? (
           <div className='flex'>
             <SwipeProfileCard
+              key={selectedIndex}
               setShowProfile={setShowProfile}
               profileData={profiles}
               index={selectedIndex}
@@ -97,11 +114,12 @@ export const SwipeProfileCard = (props) => {
     setProfileIndex(index, false);
   };
   return (
-    <div className='w-3/4 flex flex-col  justify-center mx-auto'>
+    <div className='w-3/4 flex flex-col space-between h-[80vh]  justify-center  mx-auto transition-all duration-500 ease-in-out'>
       <div
         onClick={() => {
           setShowProfile(false);
         }}
+        className='h-[80%] flex items-center justify-center'
       >
         <img
           src={profileData[index]?.profile}
@@ -109,7 +127,7 @@ export const SwipeProfileCard = (props) => {
           className='w-full mb-4 cursor-pointer'
         />
       </div>
-      <div className='bg-black/10 rounded-lg px-2 py-2 flex items-center justify-between h-full'>
+      <div className='bg-black/10 rounded-lg px-2 py-2 flex items-center justify-between h-fit'>
         <div className='flex items-center gap-x-1'>
           <p className='text-base'>{profileData[index]?.name}</p>
           <Separator orientation='vertical' className='bg-lightGray h-[16px]' />

@@ -80,6 +80,14 @@ export const RouterPaths = [
       </PrivateRoute>
     ),
   },
+  {
+    path: '/match',
+    element: (
+      <PrivateRoute>
+        <ItsAMatch />
+      </PrivateRoute>
+    ),
+  },
 ];
 
 function PrivateRoute({ children }) {

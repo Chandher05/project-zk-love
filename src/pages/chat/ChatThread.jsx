@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import { getImage } from '../../../utils';
 import { useState, useEffect } from 'react';
 import { useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+
 const dummyMsgData = [
   {
     id: 1,
@@ -29,24 +31,12 @@ const dummyMsgData = [
 const dummyMsgs = [
   { add: '1234', msg: 'Hey hey' },
   { add: '12', msg: 'Hey there' },
-  { add: '1234', msg: 'Hey' },
-  { add: '12', msg: 'Hey' },
-  { add: '1234', msg: 'Hey' },
-  { add: '12', msg: 'Hey' },
-  { add: '1234', msg: 'Hey' },
-  { add: '12', msg: 'Hey' },
-  { add: '1234', msg: 'Hey' },
-  { add: '12', msg: 'Hey' },
-  { add: '1234', msg: 'Hey' },
-  { add: '12', msg: 'Hey' },
 ];
 
 export const ChatThread = (props) => {
   const [array, setArray] = useState(dummyMsgs);
-  const { id } = useParams();
-  const thread = dummyMsgData.filter((msg) => msg.id == id)[0];
-  console.log(id, 'id from thread');
-  console.log(thread, 'thread thread thread');
+  const { id, name, profile } = useLocation();
+  // const thread = dummyMsgData.filter((msg) => msg.id == id)[0];
   const containerRef = useRef(null);
   useEffect(() => {
     if (containerRef && containerRef.current) {
@@ -58,7 +48,7 @@ export const ChatThread = (props) => {
   return (
     <section className='h-screen flex items-center justify-center'>
       <div className='relative container mx-auto w-full h-full max-w-sm bg-slate-100 px-0'>
-        <ChatHeader image={thread.image} name={thread.name} />
+        <ChatHeader image={profile} name={name} />
         <div className='flex flex-col h-[calc(90%-60px)] overflow-y-scroll px-1'>
           {array.map((_msg) => {
             return <Message message={_msg.msg} id={_msg.add} />;
@@ -86,7 +76,7 @@ export const ChatHeader = (props) => {
         </a>
       </div>
       <div className='flex gap-2 items-center'>
-        <img src={getImage(image)} alt='profile_img' className='w-8 h-8 rounded-full' />
+        <img src={image} alt='profile_img' className='w-8 h-8 rounded-full' />
         <div className='flex flex-col'>
           <p className='text-base text-black font-medium'>{name}</p>
           <p className='text-xs text-lightGray leading-3'>{'online'}</p>

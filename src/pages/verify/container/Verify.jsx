@@ -17,40 +17,32 @@ export default function Verify() {
   const [pageState, setPageState] = useState('init');
   const [error, setError] = useState('');
 
-  // useEffect(() => {
-  //   qrCode.append(ref.current);
-  // }, []);
-
-  // useEffect(() => {
-  //   qrCode.update({
-  //     data: url,
-  //   });
-  // }, [url]);
-  // const qrCode = new QRCodeStyling({
-  //   width: 200,
-  //   height: 200,
-  //   backgroundOptions: {
-  //     color: '#ffffff',
-  //   },
-  //   dotsOptions: {
-  //     color: '#010101',
-  //     type: 'rounded',
-  //   },
-  //   imageOptions: {
-  //     crossOrigin: 'anonymous',
-  //     margin: 20,
-  //   },
-  // });
   if (pageState == 'verified') {
     return <Navigate to='/create'></Navigate>;
   }
-  // else {
-  //   return <NotVerified ageNotVerified={true} />;
-  // }
 
   if (pageState == 'error') {
     return <>NOT VERIFIED</>;
   }
+
+  const verifyProofs = async (response) => {
+    setSismoConnectResponse(response);
+    setPageState('verifying');
+    const verifiedResult = await fetch('https://sismo-connect-offchain.vercel.app/api/verify', {
+      method: 'POST',
+      body: JSON.stringify(response),
+    });
+    const data = await verifiedResult.json();
+    if (verifiedResult.ok) {
+      // console.log(verifiedResult.getUserId(AuthType.VAULT));
+      console.log('verified');
+      setSismoConnectVerifiedResult(data);
+      setPageState('verified');
+    } else {
+      setPageState('error');
+      setError(data);
+    }
+  };
 
   return (
     <section className='h-screen flex items-center justify-center'>
@@ -83,25 +75,7 @@ export default function Verify() {
               signature={SIGNATURE_REQUEST}
               text='Prove With Sismo'
               // Triggered when received Sismo Connect response from user data vault
-              onResponse={async (response) => {
-                setSismoConnectResponse(response);
-                setPageState('verifying');
-                const verifiedResult = await fetch('http://localhost:3000/api/verify', {
-                  method: 'POST',
-                  body: JSON.stringify(response),
-                });
-                const data = await verifiedResult.json();
-                if (verifiedResult.ok) {
-                  // console.log(verifiedResult.getUserId(AuthType.VAULT));
-                  console.log('verified');
-                  setSismoConnectVerifiedResult(data);
-                  setPageState('verified');
-                  confirm('Proofs are verified! Create your profile');
-                } else {
-                  setPageState('error');
-                  setError(data);
-                }
-              }}
+              onResponse={verifyProofs}
             />
           </div>
         </div>

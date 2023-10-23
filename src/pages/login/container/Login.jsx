@@ -22,6 +22,8 @@ export default function Login() {
   const [provider, setProvider] = useState(null);
   const navigate = useNavigate();
 
+  const [loader, setloader] = useState(false);
+
   useEffect(() => {
     async function initializeOpenLogin() {
       const chainConfig = {
@@ -75,6 +77,7 @@ export default function Login() {
       navigate('/verify');
       return;
     } else {
+      setloader(true);
       try {
         const web3authProvider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
           loginProvider: 'twitter',
@@ -82,8 +85,8 @@ export default function Login() {
 
         const ethProvider = new ethers.providers.Web3Provider(web3authProvider);
         const signer = await ethProvider.getSigner();
-        const add = await signer.getAddress();
-        localStorage.setItem('addr', add);
+        const addr = await signer.getAddress();
+        localStorage.setItem('addr', addr);
         localStorage.setItem('loggedIn', 'true');
         setProvider(web3authProvider);
         navigate('/verify');
@@ -103,18 +106,23 @@ export default function Login() {
             className='w-1/2 mb-24'
           ></img>
           <h3 className='text-white/50 text-center mb-4'>Login</h3>
-          <Button
-            variant={'login'}
-            onClick={() => {
-              signIn();
-            }}
-            className='text-white border-1 border-[#E89402] hover:bg-transparent/80 rounded-lg'
-          >
-            Continue with{' '}
-            <span>
-              <img src={getImage('x_logo.svg')} alt='x logo' className='ml-2 w-4' />
-            </span>
-          </Button>
+
+          {loader ? (
+            <div class='border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600' />
+          ) : (
+            <Button
+              variant={'login'}
+              onClick={() => {
+                signIn();
+              }}
+              className='text-white border-1 border-[#E89402] hover:bg-transparent/80 rounded-lg'
+            >
+              Continue with{' '}
+              <span>
+                <img src={getImage('x_logo.svg')} alt='x logo' className='ml-2 w-4' />
+              </span>
+            </Button>
+          )}
         </div>
       </div>
     </section>

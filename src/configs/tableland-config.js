@@ -1,7 +1,7 @@
 import { Database } from "@tableland/sdk";
 
-const tableName = "projectzkloveprofile_80001_7954"; // Our predifined Table in Studio
-// const tableName = "zkloveprofile_80001_8038"; // Our predifined Table in Studio
+// const tableName = "projectzkloveprofile_80001_7954"; // Our predifined Table in Studio
+const tableName = "zkloveprofile_80001_8038"; // Our predifined Table in Studio
 let db;
 
 export function TablelandInit() {

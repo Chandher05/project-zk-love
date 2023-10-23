@@ -1,6 +1,7 @@
 import { React, useRef, useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { getImage } from '../../../utils/index';
+import { customXMTPMessagingService } from '../../configs/xmtpProtocol';
 
 const dummyMsgData = [
   {
@@ -31,6 +32,15 @@ export default function ChatOverview() {
   const [msgId, setMsgId] = useState(null);
   console.log(msgId, 'msg');
   console.log(showThread, 'showThread');
+
+  let xmptObj;
+
+  useEffect(() => {
+    xmptObj = customXMTPMessagingService();
+    xmptObj.initializeUser();
+    console.log(xmptObj.getAllConversations());
+  }, []);
+
   return (
     <section className='h-screen flex items-center justify-center'>
       <div className='relative container mx-auto w-full h-full max-w-sm bg-slate-100 px-0'>
@@ -68,7 +78,7 @@ export const ChatThreads = (props) => {
   };
   return (
     <div
-      className='w-full h-16 border-b border-slate-300 flex items-center justify-between px-2 py-1'
+      className='w-full h-16 border-b border-slate-300 flex items-center justify-between px-2 py-1 cursor-pointer'
       onClick={handleClick}
     >
       <div className='flex gap-2 items-center'>

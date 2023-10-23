@@ -2,8 +2,16 @@ import { useState } from 'react';
 import { Footer } from '../chat/ChatOverview';
 import { getImage } from '../../../utils';
 import { Button } from '../../../components/ui/button';
+import { readMyProfile } from '../../configs/tableland-config';
 
-export default function Profile(props) {
+export default function Profile() {
+  // await web3auth.logout();
+  // const id = localStorage.getItem('addr');
+  const id = '0xdbd71c0b92caa92e37b2bcc43019f38947a2b0e6';
+  const profile = readMyProfile({ id });
+  console.log('Check profile', id);
+  // get from tableland for the address
+
   return (
     <section className='h-screen flex items-center justify-center'>
       <div className='container mx-auto w-full h-full max-w-sm relative bg-slate-100 px-0'>
@@ -12,10 +20,10 @@ export default function Profile(props) {
             <p className='text-white text-lg pt-8'>Profile</p>
           </div>
           <div className='w-full h-[70%] bg-white rounded-t-lg'>
-            <AgeNameComp name={'John Wick'} age={'28'} sex={'Male'} />
+            <AgeNameComp name={profile.name} age={profile.age} sex={profile.sex} />
             <div className='flex flex-col items-center justify-center mt-6 gap-y-1'>
-              <img src={getImage('upload_icon.svg')} alt='' className='w-14 h-14' />
-              <p className='text-black/30 text-sm mb-10'>Add photos</p>
+              {/* <img src={getImage('upload_icon.svg')} alt='' className='w-14 h-14' />
+              <p className='text-black/30 text-sm mb-10'>Add photos</p> */}
               <div className='flex flex-col gap-y-2 w-full items-center justify-center mt-12'>
                 <Button variant='secondary'>Your Profile is verified</Button>
                 <Button variant='ghost' className='text-primary-700 text-base'>
@@ -25,7 +33,7 @@ export default function Profile(props) {
             </div>
           </div>
           <img
-            src={getImage('dummy_profile_1.png')}
+            src={profile.profile}
             alt='profile image'
             className='absolute w-[40%] top-[18%] left-1/2 -translate-x-1/2 rounded-full border-[10px] border-[#F29305]'
           />

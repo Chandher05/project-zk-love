@@ -8,6 +8,8 @@ import { profileIntrests } from '../../../constants';
 import { getImage } from '../../../utils';
 import { Footer } from '../chat/ChatOverview';
 import { TablelandInit, readFromTable } from '../../configs/tableland-config';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfileSwipe(props) {
   const [showProfile, setShowProfile] = useState(true);
@@ -17,12 +19,15 @@ export default function ProfileSwipe(props) {
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  const [match, setMatch] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     TablelandInit();
 
     async function read() {
       const results = await readFromTable();
-      setProfiles(results);
+      setProfiles(results.filter((profile) => profile.gender != 'Male'));
     }
     read();
   }, []);
@@ -31,12 +36,23 @@ export default function ProfileSwipe(props) {
   const setProfileIndex = (index, match) => {
     // write into match
 
-    if (index + 1 > profiles.length) {
-      setNoProfileToShow(true);
+    if (index + 1 >= profiles.length) {
+      setNoProfile(true);
     }
 
     if (index + 1 < profiles?.length) {
       setSelectedIndex(index + 1);
+    }
+
+    if (match) {
+      navigate('/match', {
+        state: {
+          name: profiles[index].name,
+          addr: profiles[index].addr,
+          profile: profiles[index].profile,
+        },
+      });
+      // return <Navigate to='/match'></Navigate>;
     }
   };
   return (
@@ -45,10 +61,15 @@ export default function ProfileSwipe(props) {
         <div className='w-full h-14 bg-white flex justify-center items-center'>
           <p className='text-2xl leading-7 mt-2'>Discover</p>
         </div>
-        {noProfile && <div className='noProfile'>No Profiles to Show</div>}
+        {noProfile && (
+          <div>
+            <NoProfileToShow></NoProfileToShow>
+          </div>
+        )}
         {showProfile && !noProfile ? (
           <div className='flex'>
             <SwipeProfileCard
+              key={selectedIndex}
               setShowProfile={setShowProfile}
               profileData={profiles}
               index={selectedIndex}
@@ -56,7 +77,9 @@ export default function ProfileSwipe(props) {
             />
           </div>
         ) : (
-          <ProfileCard setShowProfile={setShowProfile} profile={profiles[selectedIndex]} />
+          !noProfile && (
+            <ProfileCard setShowProfile={setShowProfile} profile={profiles[selectedIndex]} />
+          )
         )}
         <div className='absolute bottom-0 w-full'>
           <Footer />
@@ -91,19 +114,20 @@ export const SwipeProfileCard = (props) => {
     setProfileIndex(index, false);
   };
   return (
-    <div className='w-3/4 flex flex-col  justify-center mx-auto'>
+    <div className='w-3/4 flex flex-col space-between h-[80vh]  justify-center  mx-auto transition-all duration-500 ease-in-out'>
       <div
         onClick={() => {
           setShowProfile(false);
         }}
+        className='h-[80%] flex items-center justify-center'
       >
         <img
-          src={getImage('profile_image_1.png')}
+          src={profileData[index]?.profile}
           alt='profile image'
           className='w-full mb-4 cursor-pointer'
         />
       </div>
-      <div className='bg-black/10 rounded-lg px-2 py-2 flex items-center justify-between'>
+      <div className='bg-black/10 rounded-lg px-2 py-2 flex items-center justify-between h-fit'>
         <div className='flex items-center gap-x-1'>
           <p className='text-base'>{profileData[index]?.name}</p>
           <Separator orientation='vertical' className='bg-lightGray h-[16px]' />
@@ -145,11 +169,7 @@ export const ProfileCard = (props) => {
   const { setShowProfile, profile } = props;
   return (
     <div className='w-full h-full relative'>
-      <img
-        src={getImage(profile.profile_img)}
-        alt='profile'
-        className='w-full h-[35%] object-cover mb-4'
-      />
+      <img src={profile?.profile} alt='profile' className='w-full h-[35%] object-cover mb-4' />
       <div className='flex flex-col gap-y-6 px-3'>
         <div>
           <p className='text-base font-semibold leading-4'>{profile.name}</p>
@@ -187,3 +207,11 @@ export const ProfileCard = (props) => {
     </div>
   );
 };
+
+function NoProfileToShow() {
+  return (
+    <div className='flex justify-center items-center'>
+      <h1 className='text-lg font-bold h-screen'>No more profiles left</h1>
+    </div>
+  );
+}

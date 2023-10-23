@@ -25,7 +25,7 @@ function CreateProfile() {
     TablelandInit();
     await writeintoTable({ ...profile });
     console.log('DONE');
-    confirm('ALERT! This is Sent to the Database');
+    setStep(4);
   };
   if (step == 1) {
     return <Verified setProfile={addToProfile}></Verified>;

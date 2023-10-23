@@ -1,4 +1,4 @@
-export const profileIntrests = ["Sports", "Music", "Travel", "Reading", "Art", "Gaming", "Photography", "Dancing", "Coding", "Hiking", "Pet lover", "Gadgets freak", "Camping", "Fashion Insta", "Fitness Guru", "Meeting new people", "Dancing", "Foodie", "caffine addict"];
+export const profileIntrests = ["Sports", "Music", "Travel", "Reading", "Art", "Gaming", "Photography", "Dancing", "Coding", "Hiking", "Pet lover", "Gadgets freak", "Camping", "Fashion", "Fitness Guru", "Meeting new people", "Dancing", "Foodie", "Caffine addict"];
 export const web3AuthLoginType = "google";
 export const web3AuthClientId =
     "BFWg2RH35EKxZJtntj1l-G2XU8AY0l-yFgFIs9iDbgKAW45ZxE9_qfj6COAWwI-RhOs2pN6OHwgZHgtoHjOlMFM";
